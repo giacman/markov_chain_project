@@ -4,7 +4,7 @@
 
 The goal of this application is to use Markov Chains to generate new songs with lyrics in the style of Pulp singer Jarvis Cocker.
 
-Descriptions of the project:
+Description of the project:
 
 1. Fetch content from the web. To fetch Jarvis Cocker lyrics we will try to use musixmatch API (musixmatch.com)
 
@@ -12,7 +12,7 @@ Descriptions of the project:
 
 3. Generate and display lyrics using Markov chain model.
 
-For more info on what Markov chains you can have a look here: https://en.wikipedia.org/wiki/Markov_chain
+For more info on Markov chains you can have a look here: https://en.wikipedia.org/wiki/Markov_chain
 
 For more info on Jarvis Cocker and the Pulp you can have a look 
 here: https://en.wikipedia.org/wiki/Pulp_(band) 
