@@ -41,15 +41,3 @@ for item in response_tracks['message']['body']['track_list']:
 
 print tracks
 
-# Getting lytics from track_ids
-
-url_2 = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?"
-
-for i in tracks:
-	print i
-
-payload_2 = {'track_id' : '15953433' , 'apikey' : apikey}
-
-r_2 = requests.get(url_2, params=payload_2)
-
-print r_2.text
