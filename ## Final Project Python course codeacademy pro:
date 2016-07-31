@@ -1,0 +1,11 @@
+## Final Project Python course codeacademy pro:
+## Create a new song with lyrics in the style of Kanyewset (Kendrick Lamar) using Markov Chains 
+
+1. Fetch content from the web
+- Scrape/API http://kanyerest.xyz/docs
+- clean the data
+- write content to a file
+
+2. Generate (train?) Markov chain with data
+
+3. Generate and display lyrics using Markov chain model
