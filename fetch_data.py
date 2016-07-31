@@ -6,25 +6,50 @@
 import requests
 import json
 import pprint
+import ast
 
 apikey = "7261173ce8778dc4d9ae6de378b5dfb9"
 
-# Get the artist_id searching for 'pulp' 
+# Getting the artist_id from band name search 
 url = "http://api.musixmatch.com/ws/1.1/artist.search"
+
 payload = {'q_artist' : 'pulp', 'page_size' : '5', 'apikey' : apikey}
+
 r = requests.get(url, params = payload)
+
 response_artist = r.json()
-#print pprint.pprint(response_artist['message']['body']['artist_list'][0]['artist']['artist_id'])
+
 artist_id = response_artist['message']['body']['artist_list'][0]['artist']['artist_id']
 
-# Using the artist_id to search for tracks
+# Getting track_ids from artist_id
+tracks = []
+
 f_artist_id = artist_id
+
 url_1 = "http://api.musixmatch.com/ws/1.1/track.search?"
+
 payload_1 = {'f_artist_id' : f_artist_id , 'apikey' : apikey}
+
 r_1 = requests.get(url_1, params=payload_1)
+
 response_tracks = r_1.json()
-print pprint.pprint(response_tracks['message'])
-# for message in response_tracks:
-# 	print 1
-# 	# for i in message:
-# 	# 	print message[0]
+
+for item in response_tracks['message']['body']['track_list']:
+ 	for i in item:
+ 		track_id = item[i]["track_id"]
+ 		tracks.append(track_id)
+
+print tracks
+
+# Getting lytics from track_ids
+
+url_2 = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?"
+
+for i in tracks:
+	print i
+
+payload_2 = {'track_id' : '15953433' , 'apikey' : apikey}
+
+r_2 = requests.get(url_2, params=payload_2)
+
+print r_2.text
