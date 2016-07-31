@@ -6,7 +6,6 @@
 import requests
 import json
 import pprint
-import ast
 
 apikey = "7261173ce8778dc4d9ae6de378b5dfb9"
 
@@ -39,5 +38,18 @@ for item in response_tracks['message']['body']['track_list']:
  		track_id = item[i]["track_id"]
  		tracks.append(track_id)
 
-print tracks
+#print tracks
+
+# Getting lytics from track_ids
+
+url_2 = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?"
+
+for track_id in tracks:
+	print track_id
+	payload_2 = {'track_id' : track_id , 'apikey' : apikey}
+	r_2 = requests.get(url_2, params=payload_2)
+	response_lyric = r_2.json()
+	print pprint.pprint(response_lyric['message']['body']['lyrics']['lyrics_body'])
+	break
+
 
