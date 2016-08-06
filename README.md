@@ -8,9 +8,7 @@ Description of the project:
 
 1. Fetch content from the web. To fetch Jarvis Cocker lyrics we will try to use musixmatch API (musixmatch.com)
 
-2. Generate (train?) Markov chain with data.
-
-3. Generate and display lyrics using Markov chain model.
+2. Generate and display lyrics using Markov chain model.
 
 For more info on Markov chains you can have a look here: https://en.wikipedia.org/wiki/Markov_chain
 
