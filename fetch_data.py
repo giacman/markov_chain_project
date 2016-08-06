@@ -45,7 +45,9 @@ for track_id in tracks:
 		response_lyric = response_lyric['message']['body']['lyrics']
 		lyric_text = response_lyric['lyrics_body']
 		bad_string = '''******* This Lyrics is NOT for Commercial use *******'''
-		string = string.replace(bad_string,'')
+		lyric_text = lyric_text.replace(bad_string,'')
+		another_bad_string = '''...'''
+		lyric_text = lyric_text.replace(another_bad_string,'')
 		data.append(lyric_text)
 	else:
 		no_lyrics_count += 1
