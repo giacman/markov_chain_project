@@ -44,8 +44,6 @@ for track_id in tracks:
 		response_lyric = response_lyric.json()
 		response_lyric = response_lyric['message']['body']['lyrics']
 		lyric_text = response_lyric['lyrics_body']
-		bad_string = '''******* This Lyrics is NOT for Commercial use *******'''
-		string = string.replace(bad_string,'')
 		data.append(lyric_text)
 	else:
 		no_lyrics_count += 1
@@ -54,28 +52,4 @@ print 'On a total of %s tracks, %s has no lyrics and %s has' % (len(tracks), no_
 
 # main problem is that songs returned by this API are truncated. 
 # I will try to train the model with this data and see results, but I will have to find a better solution moving forwad.
-
-
-# Cleaning the Data: a method to clean the data
-
-
-# Save data in a file
-string = ''
-for lyric in data:
-	string += str(lyric)
-
-# Open a file
-f = open("lyrics.txt", "wb")
-f.write(string)
-
-# Close opend file
-f.close()
-
-
-
-
-
-
-
-
 
