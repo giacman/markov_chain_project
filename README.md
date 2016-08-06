@@ -1,6 +1,6 @@
 # markov chain project
 
-## This is the final Project of a Python course on codeacademy pro: https://www.codecademy.com/final_project/python
+## This is the final Project of codeacademy Pro Python course: https://www.codecademy.com/final_project/python
 
 The goal of this application is to use Markov Chains to generate new songs with lyrics in the style of Pulp singer Jarvis Cocker.
 
