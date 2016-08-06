@@ -17,40 +17,39 @@ response_artist = response_artist.json()
 artist_id = response_artist['message']['body']['artist_list'][0]['artist']['artist_id']
 print artist_id
 
-# Getting track_ids from artist_id
-
-# need to implement a loop up to catch IndexError: list index out of range at 'page': 11
+# Getting all track_ids avilable for the artist_id
 tracks = []
 url_tracks = "http://api.musixmatch.com/ws/1.1/track.search?"
-payload_tracks = {'f_artist_id' : artist_id , 'apikey' : apikey}
-response_tracks = requests.get(url_tracks, params=payload_tracks)
-response_tracks = response_tracks.json()
-
-for item in response_tracks['message']['body']['track_list']:
- 	for i in item:
- 		track_id = item[i]["track_id"]
- 		tracks.append(track_id)
-
+for page in range(1,3):
+	payload_tracks = {'f_artist_id' : artist_id ,'page_size' : 100, 'page' : 1, 'apikey' : apikey}
+	response_tracks = requests.get(url_tracks, params=payload_tracks)
+	response_tracks = response_tracks.json()
+	for item in response_tracks['message']['body']['track_list']:
+	 	for i in item:
+	 		track_id = item[i]["track_id"]
+	 		tracks.append(track_id)
 
 # Getting lyrics from track_ids
-
+data = []
+no_lyrics_count = 0
 url_lyrics = "http://api.musixmatch.com/ws/1.1/track.lyrics.get?"
+url_track_id = "http://api.musixmatch.com/ws/1.1/track.get?"
 for track_id in tracks:
-	data = []
-	payload_lyrics = {'track_id' : int(track_id) , 'apikey' : apikey}
-	response_lyric = requests.get(url_lyrics, params=payload_lyrics)
-	response_lyric = response_lyric.json()
-	print response_lyric['message']['header']["status_code"]
-	if response_lyric['message']['header']["status_code"] == 200:
+	payload_lyrics = {'track_id' : int(track_id) ,'f_has_lyrics' : 1, 'apikey' : apikey}
+	response_track_id = requests.get(url_track_id, params=payload_lyrics)
+	response_track_id = response_track_id.json()
+	if response_track_id['message']['body']['track']['has_lyrics'] == 1:
+		#print 'lyrics available for track %s :' % response_track_id['message']['body']['track']['track_name'] 
+		response_lyric = requests.get(url_lyrics, params=payload_lyrics)
+		response_lyric = response_lyric.json()
 		response_lyric = response_lyric['message']['body']['lyrics']
 		lyric_text = response_lyric['lyrics_body']
 		data.append(lyric_text)
-		#print lyric_text
+	else:
+		no_lyrics_count += 1
 
-print data
+print 'On a total of %s tracks, %s has no lyrics and %s has' % (len(tracks), no_lyrics_count, len(tracks) - no_lyrics_count)
 
-# two issues: if workign only at the end ot the loop
-# most of the calls return 404
-#[9611472, 2206785, 13980697, 1948865, 1745355, 47891068, 17486978, 1646148, 33211787, 17898713]
-
+# main problem is that songs returned by this API are truncated. 
+# I will try to train the model with this data and see results, but I will have to find a better solution moving forwad.
 
