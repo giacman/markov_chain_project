@@ -1,18 +1,23 @@
-# markov chain project
-
-## This is the final Project of codeacademy Pro Python course: https://www.codecademy.com/final_project/python
+# Markov Chain Jarvis Cocker project
 
 The goal of this application is to use Markov Chains to generate new songs with lyrics in the style of Pulp singer Jarvis Cocker.
 
 Description of the project:
 
-1. Fetch content from the web. To fetch Jarvis Cocker lyrics we will try to use musixmatch API (musixmatch.com)
+1. Fetch original Jarvis Cocker lyrics using [musixmatch](musixmatch.com) API (free limited access) 
+2. Generate and display *pseudo* Jarvis Cocker lyrics using a simple Markov chain model.
 
-2. Generate and display lyrics using Markov chain model.
+Set up:
 
-For more info on Markov chains you can have a look here: https://en.wikipedia.org/wiki/Markov_chain
+- install virtualenv
+- run `pip install -r requirements.txt`
+- run `python prepare_data.py` and wait until the lyrics are dowloaded
 
-For more info on Jarvis Cocker and the Pulp you can have a look 
-here: https://en.wikipedia.org/wiki/Pulp_(band) 
-and 
-here: https://en.wikipedia.org/wiki/Jarvis_Cocker
+Run `python generate_lyrics.py` and check out the results!
+
+For information on Markov chain models look [here](https://en.wikipedia.org/wiki/Markov_chain):
+
+For information on Jarvis Cocker look [here](https://en.wikipedia.org/wiki/Jarvis_Cocker), or for more info about
+The Pulp look [here](https://en.wikipedia.org/wiki/Pulp_(band)):
+
+Note: This my final Project for the [codeacademy Pro Python course](https://www.codecademy.com/final_project/python):
